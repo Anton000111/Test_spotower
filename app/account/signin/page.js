@@ -1,7 +1,7 @@
 'use client'
 import { Button, FormInput } from '@/components';
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation';
 import styles from './page.module.css';
 import validator from 'validator';
 import { useUser } from '@/contexts';
@@ -78,6 +78,8 @@ export default function SignIn() {
 
     setGlobalError(error);
   }
+
+  if (user) return null;
 
   return (
     <div className={styles.container}>

@@ -19,22 +19,6 @@
   padding: 1.5em 1em;
 }
 
-.inputWrapper {
-  width: 100%;
-  padding: 0.75em 1em;
-  border: solid;
-  border-width: 1px;
-  border-radius: 0.5em;
-  position: relative;
-}
-
-.input {
-  width: inherit;
-  border: none;
-  outline: none;
-  font-size: 1em;
-}
-
 .buttonWrapper {
   display: flex;
   justify-content: flex-end;
@@ -56,13 +40,6 @@
 
 .explanation > span {
   color: var(--green);
-}
-
-.error {
-  position: absolute;
-  left: 0;
-  top: calc(100% + 0.5em);
-  color: var(--red);
 }
 
 @media (min-width: 768px) {
