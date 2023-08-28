@@ -21,7 +21,7 @@ const Header = () => {
   const pathname = usePathname();
   const { user, logOut } = useUser();
 
-  if (pathname.includes('/account')) {
+  if (pathname.includes('/account') || pathname.includes('/admin')) {
     return (
       <header className={styles.header}>
         <nav className={styles.container} style={{ maxWidth: '100%' }}>
