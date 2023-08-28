@@ -35,6 +35,7 @@ model Track {
   id Int @id @unique @default(autoincrement())
   screenSize String
   ip String
+  userAgent String
   dashboard Dashboard @relation(fields: [dashboardId], references: [id])
   dashboardId Int
 }
