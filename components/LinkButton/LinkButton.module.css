@@ -1,0 +1,23 @@
+.text {
+	color: inherit;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+  text-decoration: none;
+  font-size: 0.875em;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.text:hover, .logo:hover {
+  color: var(--green);
+}
+
+.container {
+  display: flex;
+  align-items: center;
+}
+
+.container > img {
+  margin-right: 8px;
+}
