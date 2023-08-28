@@ -4,3 +4,4 @@ export * from './Main';
 export * from './LinkButton';
 export * from './Button';
 export * from './Card';
+export * from './FormInput';

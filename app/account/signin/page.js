@@ -1,13 +1,12 @@
 'use client'
-import { Button } from '@/components';
+import { Button, FormInput } from '@/components';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation'
 import styles from './page.module.css';
 import validator from 'validator';
 import { useUser } from '@/contexts';
 import { fetchApi, getDataFromForm } from '@/helpers';
-
-const includesDigitRegExp = new RegExp(/\d/);
+import { INCLUDES_DIGIT_REG_EXP } from '@/constants';
 
 export default function SignIn() {
   const [emailError, setEmailError] = useState(false);
@@ -29,26 +28,28 @@ export default function SignIn() {
     if (user) router.replace(`/`);
   }, [user, router]);
 
-  const emailHandler = (event) => {
-    const { value } = event.target;
-
+  const emailHandler = (value) => {
     setGlobalError(undefined);
 
-    setEmailError(!validator.isEmail(value));
+    const isValid = validator.isEmail(value);
+
+    setEmailError(!isValid);
+
+    return isValid;
   }
 
-  const passwordHandler = (event) => {
-    const { value } = event.target;
-
+  const passwordHandler = (value) => {
     setGlobalError(undefined);
 
     const isValidLength = validator.isLength(value, { min: 8, max: 8 });
 
     const isCapital = value !== value.toLowerCase();
 
-    const isWithNumber = includesDigitRegExp.test(value);
+    const isWithNumber = INCLUDES_DIGIT_REG_EXP.test(value);
 
     setPasswordError(!isValidLength || !isCapital || !isWithNumber);
+
+    return isValidLength && isCapital && isWithNumber;
   }
 
   const submitHandler = async (event) => {
@@ -86,14 +87,20 @@ export default function SignIn() {
           <span>*&nbsp;</span>
           indicates required field
         </p>
-        <div className={styles.inputWrapper}>
-          <input className={styles.input} name="email" onChange={emailHandler} placeholder="* Email address" type="text" />
-          {emailError && <span className={styles.error}>Email must be valid email address</span>}
-        </div>
-        <div className={styles.inputWrapper}>
-          <input  className={styles.input} name="password" onChange={passwordHandler} placeholder="* Password" type="password" />
-          {passwordError && <span className={styles.error}>Password must be 8 characters, includes Capital letter and number</span>}
-        </div>
+        <FormInput
+          type="text"
+          name="email"
+          placeholder="* Email address"
+          errorMessage="Email must be valid email address"
+          validate={emailHandler}
+        />
+        <FormInput
+          type="password"
+          name="password"
+          placeholder="* Password"
+          errorMessage="Password must be 8 characters, includes Capital letter and number"
+          validate={passwordHandler}
+        />
         <div className={styles.buttonWrapper}>
           {globalError && <span className={styles.globalError}>{globalError}</span>}
           <Button
