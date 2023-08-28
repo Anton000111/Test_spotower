@@ -63,13 +63,13 @@ export default function SignIn() {
       method: 'POST',
       body: JSON.stringify(body)
     });
+  
+    setIsLoading(false);
 
     if (response.ok) {
       const user = await response.json();
   
       saveUser(user);
-  
-      setIsLoading(false);
   
       return router.replace(`/`);
     }
