@@ -6,7 +6,7 @@ import Providers from '@/contexts';
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'Starbucks Coffee Company',
+  title: 'Coffee Company',
   description: 'Test App for Spotower',
 }
 
