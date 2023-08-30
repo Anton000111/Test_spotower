@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation';
 import { Navigation } from '../Navigation';
 import { LinkButton } from '../LinkButton';
 import { Button } from '../Button';
-import headerIcon from '@/public/starbucks.svg';
+import headerIcon from '@/public/coffee.svg';
 import locationIcon from '@/public/location.svg';
 import menuIcon from '@/public/menu.svg';
 import { useUser } from '@/contexts';
